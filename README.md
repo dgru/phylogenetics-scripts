@@ -1,2 +1,2 @@
 # Fournier_Lab
-Scripts Related to Phylogenetic Analyses (for cluster-related scripts see "Cluster")
+Scripts related to phylogenetic analyses in the Fournier Lab. For additional MIT cluster-related scripts and standard job submission scripts, see "cluster" repository.
