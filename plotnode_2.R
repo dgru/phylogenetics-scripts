@@ -1,7 +1,7 @@
 
 # the directory where your file(s) live
-setwd('~/Documents/WHOI/RCode/GruenDS/')
-#setwd("/Users/dgruen/Desktop/clusterfucklocal")
+# setwd('~/Documents/WHOI/RCode/GruenDS/')
+setwd("/Users/dgruen/Desktop/clusterfucklocal")
 
 # get list of all files in your current directory
 fileList <- list.files()
