@@ -1,14 +1,3 @@
-# the directory where your file(s) live
-#setwd('~/Documents/WHOI/RCode/GruenDS/')
-setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_02")
-
-# get list of all files in your current directory
-fileList <- list.files()
-# make a vector of all files in your working directory whose filename contains 'datedist'
-fileList <- fileList[grep('datedist', fileList)]
-
-saveNodes <- plotNode(inputFiles=fileList, node=c(104,105,106,108,110), plotLayout=c(2,1), returnData = TRUE, plotTrees = F)
-
 
 #' @param inputFiles is character vector of filenames in your working directory.
 #'   the lines and their corresponding color order will be determined by the
@@ -101,46 +90,14 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
   
 }
 
+# the directory where your file(s) live
+#setwd('~/Documents/WHOI/RCode/GruenDS/datedist/')
+setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_02")
 
-
-## END. old stuff below
-#=============================
-
-n=0
-nodeDates = matrix(ncol = length(MyTrees[[1]]$node.label), nrow=1000000) ###arbitrary number of rows, can change it to the exact number of trees in datedist file if you want
-for (i in MyTrees){
-  dates = as.numeric(i$node.label)
-  n=n+1
-  nodeDates[n,]=dates
-}
-
-nodeDates = nodeDates[complete.cases(nodeDates),]
-print(str(nodeDates))
-print(node)
-#dim(nodeDates)
-if (plot) plot(density(nodeDates[,node])) ###this is the plot, save output
-
-}
-
-
-library(ape)
-#library(HDInterval)
-setwd('~/Documents/WHOI/RCode/GruenDS/')
-#setwd("/Users/dgruen/Desktop/clusterfucklocal")
-input = "outfile_pb_molclock_18_0109_dsg_sample.datedist" ###datedist file here
-#nodeOfInterest = 104 ###but do this for nodes 104 and 105
+# get list of all files in your current directory
 fileList <- list.files()
+# make a vector of all files in your working directory whose filename contains 'datedist'
 fileList <- fileList[grep('datedist', fileList)]
-par(mfrow=c(2,3))
-plotNode(input=fileList[1], node=104)
-plotNode(input=fileList[2], node=104)
-plotNode(input=fileList[3], node=104)
-plotNode(input=fileList[1], node=105)
-plotNode(input=fileList[2], node=105)
-plotNode(input=fileList[3], node=105)
 
-# single node
-# up to 10 files / node
+saveNodes <- plotNode(inputFiles=fileList, node=c(104,105,106,108,110), plotLayout=c(2,1), returnData = TRUE, plotTrees = F)
 
-# how to deal w bandwidth
-# x/y limits
