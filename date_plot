@@ -1,0 +1,22 @@
+library(ape)
+library(HDInterval)
+setwd("/Users/dgruen/Desktop/clusterfucklocal/datedist")
+input = "outfile_pb_molclock_bothcals2_18_04_30_2_sample.datedist" ###datedist file here
+MyTrees = read.tree(input)
+tempTree = MyTrees[[1]]
+tempTree$node.label = seq(length(tempTree$node.label))
+plot(tempTree, show.node.label = TRUE, cex=0.7) ###this will visualize the node numbers
+
+nodeOfInterest = 105 ###for older node, really 104 but what if we look at 105?
+
+n=0
+nodeDates = matrix(ncol = length(MyTrees[[1]]$node.label),nrow=1000000) ###arbitrary number of rows, can change it to the exact number of trees in datedist file if you want
+for (i in MyTrees){
+  dates = as.numeric(i$node.label)
+  n=n+1
+  nodeDates[n,]=dates
+}
+
+nodeDates = nodeDates[complete.cases(nodeDates),]
+dim(nodeDates)
+plot(density(nodeDates[,nodeOfInterest])) ###this is the plot
