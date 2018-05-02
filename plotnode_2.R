@@ -1,19 +1,13 @@
-
 # the directory where your file(s) live
 #setwd('~/Documents/WHOI/RCode/GruenDS/')
-setwd("/Users/dgruen/Desktop/clusterfucklocal")
+setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_02")
 
 # get list of all files in your current directory
 fileList <- list.files()
 # make a vector of all files in your working directory whose filename contains 'datedist'
 fileList <- fileList[grep('datedist', fileList)]
 
-saveNodes <- plotNode(inputFiles=fileList, node=c(104,105), plotLayout=c(2,1), returnData = TRUE, plotTrees = TRUE)
-
-
-
-
-
+saveNodes <- plotNode(inputFiles=fileList, node=c(104,105,106,108,110), plotLayout=c(2,1), returnData = TRUE, plotTrees = F)
 
 
 #' @param inputFiles is character vector of filenames in your working directory.
@@ -43,10 +37,13 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
     MyTrees <- ape::read.tree(fileList[[b]])
     # old code to build the indiv trees
     if(plotTrees){
+      pdf(paste(fileList[[b]],'-plotTrees.pdf',sep=''), width=12,height=25)
       tempTree = MyTrees[[1]]
       tempTree$node.label = seq(length(tempTree$node.label))
       plot(tempTree, show.node.label = TRUE, cex=0.7) ###this will visualize the node numbers
+      dev.off()
       invisible(readline(prompt=paste("Plot for", fileList[[b]], ". Press [enter] to continue")))
+      
     }
     
     n=0
