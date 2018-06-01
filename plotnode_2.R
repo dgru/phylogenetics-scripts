@@ -1,3 +1,13 @@
+# the directory where your file(s) live
+#setwd('~/Documents/WHOI/RCode/GruenDS/')
+setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_10")
+
+# get list of all files in your current directory
+fileList <- list.files()
+# make a vector of all files in your working directory whose filename contains 'datedist'
+fileList <- fileList[grep('datedist', fileList)]
+
+saveNodes <- plotNode(inputFiles=fileList, node=c(147,186,181,211), plotLayout=c(2,2), returnData = TRUE, plotTrees = F)
 
 #' @param inputFiles is character vector of filenames in your working directory.
 #'   the lines and their corresponding color order will be determined by the
@@ -19,7 +29,7 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
   #  hcl(h = hues, l = 65, c = 100)[1:n]
   #}
   
-  pal <- rep(brewer.pal(5, 'Set1'), 4)
+  pal <- rep(brewer.pal(6, 'Set1'), 4)
   
   fileList <- as.list(inputFiles)
   print(paste('Reading', length(fileList), 'input files and building trees...'))
@@ -120,14 +130,14 @@ for (b in c(1,3)){ # for files 1 and 3 in fileList
   #startDens <- lapply(saveNodes, FUN=function(x) density(x[,node[tt]]))
   #xlims <- rev(range(unlist(lapply(newDens, FUN=function(x) range(x$x)))))
   #if (b == 1){
-    xlims <- c(750,100)
-    ylims <- c(0,.015)
+  xlims <- c(750,100)
+  ylims <- c(0,.015)
   #}
   
- # if (b == 3){
- #   xlims <- c(750,350)
- #   ylims <- c(0,.015)
- # }
+  # if (b == 3){
+  #   xlims <- c(750,350)
+  #   ylims <- c(0,.015)
+  # }
   
   plot(0, 0, xlim = xlims, ylim = ylims, type='n', xlab='Years (Ma)', ylab='Density')
   title(paste(fileList[[b]]))
