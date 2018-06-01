@@ -103,6 +103,10 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
   
 }
 
+#=======================================
+## below is the very rough code used to plot multiple nodes from a single file
+#=======================================
+
 # the directory where your file(s) live
 setwd('~/Documents/WHOI/RCode/GruenDS/datedist/')
 #setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_02")
@@ -126,10 +130,12 @@ pdf('plot_nodes_2May2018.pdf', height=12, width=8, useDingbats = F)
 node <- c(151,176,178,208)
 par(mfrow=c(2,1))
 for (b in c(1,3)){ # for files 1 and 3 in fileList
-  # starting density plots before redo density call with common bandwidth
+  # starting density plots before redo density call with common bandwidth to get appropriate axis limits
   #startDens <- lapply(saveNodes, FUN=function(x) density(x[,node[tt]]))
   #xlims <- rev(range(unlist(lapply(newDens, FUN=function(x) range(x$x)))))
   #if (b == 1){
+  
+  ## keep axis limits fixed for now
   xlims <- c(750,100)
   ylims <- c(0,.015)
   #}
@@ -139,10 +145,12 @@ for (b in c(1,3)){ # for files 1 and 3 in fileList
   #   ylims <- c(0,.015)
   # }
   
+  # build an empty plot
   plot(0, 0, xlim = xlims, ylim = ylims, type='n', xlab='Years (Ma)', ylab='Density')
   title(paste(fileList[[b]]))
   legend('topleft', as.character(node), col=gg_color_hue(length(node)), lty=1)
   
+  # calculate then add a line for each node
   for (tt in 1:length(node)){
     # get metrics to specify plot
     old.bw <- unlist(lapply(startDens, FUN=function(x) x$bw))
@@ -152,6 +160,8 @@ for (b in c(1,3)){ # for files 1 and 3 in fileList
     # then the lines
     lines(newDens[[b]], col=gg_color_hue(length(node))[tt], lwd=1.5, lty=ceiling(b / 5))
   }
+  
+  # go on to next file according to b
 }
 dev.off()
 
