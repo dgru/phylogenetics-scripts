@@ -1,13 +1,13 @@
 # the directory where your file(s) live
 #setwd('~/Documents/WHOI/RCode/GruenDS/')
-setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_10")
+setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_31")
 
 # get list of all files in your current directory
 fileList <- list.files()
 # make a vector of all files in your working directory whose filename contains 'datedist'
 fileList <- fileList[grep('datedist', fileList)]
 
-saveNodes <- plotNode(inputFiles=fileList, node=c(147,186,181,211), plotLayout=c(2,2), returnData = TRUE, plotTrees = F)
+saveNodes <- plotNode(inputFiles=fileList, node=c(147,186,181,211), plotLayout=c(2,2), returnData = TRUE, plotTrees = TRUE)
 
 #' @param inputFiles is character vector of filenames in your working directory.
 #'   the lines and their corresponding color order will be determined by the
@@ -29,7 +29,8 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
   #  hcl(h = hues, l = 65, c = 100)[1:n]
   #}
   
-  pal <- rep(brewer.pal(6, 'Set1'), 4)
+  #pal <- rep(brewer.pal(6, 'Set1'), 4)
+  RColorBrewer::brewer.pal(6, 'Set1’)
   
   fileList <- as.list(inputFiles)
   print(paste('Reading', length(fileList), 'input files and building trees...'))
