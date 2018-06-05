@@ -30,7 +30,7 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
   #}
   
   #pal <- rep(brewer.pal(6, 'Set1'), 4)
-  RColorBrewer::brewer.pal(6, 'Set1’)
+  pal <- rep(RColorBrewer::brewer.pal(6, 'Set1'), 4)
   
   fileList <- as.list(inputFiles)
   print(paste('Reading', length(fileList), 'input files and building trees...'))
