@@ -6,9 +6,9 @@ setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_06_10")
 fileList <- list.files()
 # make a vector of all files in your working directory whose filename contains 'datedist'
 fileList <- fileList[grep('datedist', fileList)]
-fileList <- fileList[-grep('.pdf', fileList)]
+#fileList <- fileList[-grep('.pdf', fileList)]
 
-saveNodes <- plotNode(inputFiles=fileList, node=c(147,150,155,165,174,181,186,212,214,215), plotLayout=c(5,2), returnData = TRUE, plotTrees = F, plot=TRUE)
+saveNodes <- plotNode(inputFiles=fileList, node=c(147,150,155,165,174,181,186,212,214,215), plotLayout=c(5,2), returnData = TRUE, plotTrees = TRUE, plot=TRUE)
 # rows, columns
 
 #' @param inputFiles is character vector of filenames in your working directory.
