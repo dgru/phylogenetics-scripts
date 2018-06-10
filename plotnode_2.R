@@ -1,13 +1,15 @@
 # the directory where your file(s) live
 #setwd('~/Documents/WHOI/RCode/GruenDS/')
-setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_31")
+setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_06_10")
 
 # get list of all files in your current directory
 fileList <- list.files()
 # make a vector of all files in your working directory whose filename contains 'datedist'
 fileList <- fileList[grep('datedist', fileList)]
+fileList <- fileList[-grep('.pdf', fileList)]
 
-saveNodes <- plotNode(inputFiles=fileList, node=c(147,186,181,211), plotLayout=c(2,2), returnData = TRUE, plotTrees = TRUE)
+saveNodes <- plotNode(inputFiles=fileList, node=c(147,150,155,165,174,181,186,212,214,215), plotLayout=c(5,2), returnData = TRUE, plotTrees = F, plot=TRUE)
+# rows, columns
 
 #' @param inputFiles is character vector of filenames in your working directory.
 #'   the lines and their corresponding color order will be determined by the
@@ -64,7 +66,7 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
   if (plot){
     print(paste('Building plots for', length(node), 'nodes...'))
     if (is.null(plotLayout)) stop('If plot=TRUE then you need to specify plotLayout.')
-    
+    pdf('try.pdf', height=12, width=8)
     par(mfrow = plotLayout)
     print(paste('colors are specified in the following order as:'))
     print(paste(sapply(pal[1:b], plotrix::color.id)))
@@ -97,7 +99,7 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
       } # end iteration through each file on individual plot
       
     } # end node iteration
-    
+    dev.off()
   } # end if (plot)
   
   if(returnData) return(saveNodes)
