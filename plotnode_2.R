@@ -130,18 +130,29 @@ saveNodes <- plotNode(inputFiles=fileList, node=c(147,150,155,165,174,181,186,21
 #  File: outfile_pb_molclock_18_05_02_ln_sample.datedist
 #Nodes: 151, 176, 178, 208
 
-pdf('plot_nodes_2May2018.pdf', height=12, width=12, useDingbats = F)
+pdf('plot_nodes_12june2018.pdf', height=12, width=12, useDingbats = F)
 node <- c(147,150,155,165,174,181,186,212,214,215)
 par(mfrow=c(2,2))
+
+# the following calculates a common bandwidth for the density function
+# to use for all files/nodes. 
+startDens <- lapply(saveNodes, FUN=function(x) density(x[,node[tt]]))
+old.bw <- unlist(lapply(startDens, FUN=function(x) x$bw))
+new.bw <- diff(range(old.bw)) / 2 + min(old.bw) # note the "hack" way we come up with a common bw
+
 for (b in c(1:4)){ # for files 1 and 3 in fileList
   # starting density plots before redo density call with common bandwidth to get appropriate axis limits
-  #startDens <- lapply(saveNodes, FUN=function(x) density(x[,node[tt]]))
   #xlims <- rev(range(unlist(lapply(newDens, FUN=function(x) range(x$x)))))
   #if (b == 1){
   
+  gg_color_hue <- function(n) {
+    hues = seq(15, 375, length = n + 1)
+    hcl(h = hues, l = 65, c = 100)[1:n]
+  }
+  
   ## keep axis limits fixed for now
-  xlims <- c(1500,0) # this is the x axis in Ma
-  ylims <- c(0,.015)
+  xlims <- c(1000,0) # this is the x axis in Ma
+  ylims <- c(0,.018) # this is the density axis, nonsensical units
   #}
   
   # if (b == 3){
@@ -157,8 +168,6 @@ for (b in c(1:4)){ # for files 1 and 3 in fileList
   # calculate then add a line for each node
   for (tt in 1:length(node)){
     # get metrics to specify plot
-    old.bw <- unlist(lapply(startDens, FUN=function(x) x$bw))
-    new.bw <- diff(range(old.bw)) / 2 + min(old.bw)
     newDens <- lapply(saveNodes, FUN=function(x) density(x[,node[tt]], bw=new.bw))
     
     # then the lines
