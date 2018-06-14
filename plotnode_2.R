@@ -113,14 +113,14 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
 # the directory where your file(s) live
 # setwd('~/Documents/WHOI/RCode/GruenDS/datedist/')
 # setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_02")
-setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_06_12")
+setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_06_13/posteriors_uniform")
 
 # get list of all files in your current directory
 fileList <- list.files()
 # make a vector of all files in your working directory whose filename contains 'datedist'
 fileList <- fileList[grep('datedist', fileList)]
 
-saveNodes <- plotNode(inputFiles=fileList, node=c(147,150,155,165,174,181,186,212,214,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F)
+saveNodes <- plotNode(inputFiles=fileList, node=c(1,2,3,4,5,147,150,155,165,174,181,186,212,214,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F)
 
 #Plot1:
 #  File: outfile_pb_molclock_18_05_01_ugam_sample.datedist
@@ -131,8 +131,8 @@ saveNodes <- plotNode(inputFiles=fileList, node=c(147,150,155,165,174,181,186,21
 #Nodes: 151, 176, 178, 208
 
 pdf('plot_nodes_12june2018.pdf', height=12, width=12, useDingbats = F)
-node <- c(147,150,155,165,174,181,186,212,214,215)
-par(mfrow=c(2,2))
+node <- c(1,2,3,4,5,147,150,155,165,174,181,186,212,214,215)
+par(mfrow=c(1,1))
 
 # the following calculates a common bandwidth for the density function
 # to use for all files/nodes. 
@@ -152,7 +152,7 @@ for (b in c(1)){ # for files 1 and 3 in fileList if it's 1-4 then type "c(1:4)"
   
   ## keep axis limits fixed for now
   xlims <- c(1000,0) # this is the x axis in Ma
-  ylims <- c(0,.018) # this is the density axis, nonsensical units
+  ylims <- c(0,.03) # this is the density axis, nonsensical units
   #}
   
   # if (b == 3){
