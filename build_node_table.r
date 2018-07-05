@@ -41,4 +41,11 @@ for (b in 1:length(fileList)){ # for each model
   
 }
 
+nodes <- read.table('~/Dropbox (MIT)/chitinase_data_shared/nodes_of_interest.csv', sep=',')
 
+resMat.all <- cbind(resMat.mn, resMat.hpd)
+resMat.all <- resMat.all[,order(names(resMat.all))]
+resMat.all <- resMat.all[,c(1:(ncol(resMat.all)-2))]
+resMat.all <- resMat.all[nodes[,1],]
+resMat.all <- cbind(nodes, resMat.all)
+write.table(resMat.all, file='~/Dropbox (MIT)/chitinase_data_shared/chitinase_table.csv', sep=',', col.names = T, row.names = F)
