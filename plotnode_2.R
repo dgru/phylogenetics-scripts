@@ -1,6 +1,6 @@
 # the directory where your file(s) live
 #setwd('~/Documents/WHOI/RCode/GruenDS/')
-setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_06_13/priors")
+setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_06_13/posteriors_ln")
 
 # get list of all files in your current directory
 fileList <- list.files()
@@ -113,6 +113,7 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
 # the directory where your file(s) live
 # setwd('~/Documents/WHOI/RCode/GruenDS/datedist/')
 # setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_05_02")
+# setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_06_13/posteriors_uniform")
 setwd("/Users/dgruen/Desktop/clusterfucklocal/datedists_2018_06_13/posteriors_uniform")
 
 # get list of all files in your current directory
@@ -152,7 +153,7 @@ for (b in c(1)){ # for files 1 and 3 in fileList if it's 1-4 then type "c(1:4)"
   
   ## keep axis limits fixed for now
   xlims <- c(1000,0) # this is the x axis in Ma
-  ylims <- c(0,.03) # this is the density axis, nonsensical units
+  ylims <- c(0,.04) # this is the density axis, nonsensical units
   #}
   
   # if (b == 3){
