@@ -1,8 +1,8 @@
 
-fileList <- list.files()
+fileList <- list.files('~/Dropbox (MIT)/chitinase_data_shared/datedists/', full.names = T)
 
 saveNodes <- list()
-for (b in 1:length(fileList)){
+for (b in 1:length(fileList)){ # for each model
   
   MyTrees <- ape::read.tree(fileList[[b]])
   n=0
@@ -16,15 +16,25 @@ for (b in 1:length(fileList)){
   saveNodes[[b]] <- nodeDates[complete.cases(nodeDates),]
   
   if (b == 1){
-    resMat <- data.frame(matrix(NA, ncol=length(fileList), nrow=ncol(saveNodes[[b]])))
-    names(resMat) <- fileList
+    resMat.mn <- data.frame(matrix(NA, ncol=length(fileList)+1, nrow=ncol(saveNodes[[b]])))
+    #resMat.mn[,1] <- nodes
+    resMat.hpd <- data.frame(matrix(NA, ncol=length(fileList)+1, nrow=ncol(saveNodes[[b]])))
+    #resMat.hpd[,1] <- nodes
+    
   }
   
-  for (t in 1:ncol(saveNodes[[b]])){
-    #hpd <- TeachingDemos::emp.hpd(saveNodes[[b]][,t], conf=0.95)  
+  i1 <- c(unlist(str_locate(fileList[b], 'model')))
+  i2 <- unlist(str_locate_all(fileList[b], '_'))
+  names(resMat.mn)[b + 1] <- substr(fileList[b], i1[1], i2[min(which(i2 > i1))]-1)
+  names(resMat.hpd)[b + 1] <- substr(fileList[b], i1[1], i2[min(which(i2 > i1))]-1)
+  
+  for (t in 1:ncol(saveNodes[[b]])){ # for each node of interest in this model
+    
     hpd <- bfp::empiricalHpd(saveNodes[[b]][,t], level=.95)
     mn <- mean(saveNodes[[b]][,t])
-    resMat[t,b] <- paste(round(mn, 1), ' (', round(hpd[1], 1), '-', round(hpd[2], 1), ')', sep='')
+    resMat.mn[t, b + 1] <- round(mn, 0)
+    resMat.hpd[t, b + 1] <- paste('(',round(hpd[1], 0), '-', round(hpd[2], 0), ')', sep='')
+    
   }
   
   print(paste('Tree', b, 'complete.'))
