@@ -5,15 +5,23 @@
 # chitinase working directories 
   #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig1/datedist") #for chitinase fig 1
   #setwd("/Users/dgruen/Dropbox (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig3/datedist") #for chitinase fig 3
-  setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig4/datedist") #for chitinase fig 4
-
+  #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig4/datedist") #for chitinase fig 4
+  #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig5/datedist") #for chitinase fig 5
+  # setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/sanitycheck/datedist") #for chitinase sanitycheck
+  setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig6/datedist") #for chitinase fig 6
+  
+  
 # get list of all files in your current directory
 fileList <- list.files()
 # make a vector of all files in your working directory whose filename contains 'datedist'
 fileList <- fileList[grep('datedist', fileList)]
 #fileList <- fileList[-grep('.pdf', fileList)]
 
-saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,174,181,186,215), plotLayout=c(4,3), returnData = TRUE, plotTrees = F, plot=TRUE) # rows, columns
+# saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,155,174,181,186,215), plotLayout=c(5,3), returnData = TRUE, plotTrees = F, plot=TRUE)
+    # rows, columns
+    # for all chitinase nodes
+saveNodes <- plotNode(inputFiles=fileList, node=c(165,174,148,155,181,186,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # chitinase fig 6
+    # for aquatic and terrestrial date dists only
 
 #' @param inputFiles is character vector of filenames in your working directory.
 #'   the lines and their corresponding color order will be determined by the
@@ -120,16 +128,16 @@ plotNode <- function(inputFiles, node, plot=TRUE, plotLayout=NULL, returnData=FA
 
 # chitinase working directories:
   #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig1/datedist") #for chitinase fig 1
-  setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig3/datedist") #for chitinase fig 3
-  #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig4/datedist") #for chitinase fig 4
-
+  setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig6/datedist") #for chitinase fig 6
 
 # get list of all files in your current directory
 fileList <- list.files()
 # make a vector of all files in your working directory whose filename contains 'datedist'
 fileList <- fileList[grep('datedist', fileList)]
 
-saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,174,181,186,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F)
+# saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,155,174,181,186,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # all other chitinase figs
+saveNodes <- plotNode(inputFiles=fileList, node=c(165,174,148,155,181,186,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # chitinase fig 6
+
 
 #Plot1:
 #  File: outfile_pb_molclock_18_05_01_ugam_sample.datedist
@@ -140,7 +148,7 @@ saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,174,181
 #Nodes: 151, 176, 178, 208
 
 pdf('plot_nodes_12june2018.pdf', height=12, width=12, useDingbats = F)
-node <- c(1,3,5,6,70,147,148,165,174,181,186,215)
+node <- c(165,174,148,155,181,186,215)
 par(mfrow=c(1,1))
 
 # the following calculates a common bandwidth for the density function
