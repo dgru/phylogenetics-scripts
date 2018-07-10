@@ -20,7 +20,7 @@ fileList <- fileList[grep('datedist', fileList)]
 # saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,155,174,181,186,215), plotLayout=c(5,3), returnData = TRUE, plotTrees = F, plot=TRUE)
     # rows, columns
     # for all chitinase nodes
-saveNodes <- plotNode(inputFiles=fileList, node=c(165,174,148,155,181,186,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # chitinase fig 6
+saveNodes <- plotNode(inputFiles=fileList, node=c(165,214,174,149,212,215,181), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # chitinase fig 6
     # for aquatic and terrestrial date dists only
 
 #' @param inputFiles is character vector of filenames in your working directory.
@@ -136,7 +136,7 @@ fileList <- list.files()
 fileList <- fileList[grep('datedist', fileList)]
 
 # saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,155,174,181,186,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # all other chitinase figs
-saveNodes <- plotNode(inputFiles=fileList, node=c(165,174,148,155,181,186,215), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # chitinase fig 6
+saveNodes <- plotNode(inputFiles=fileList, node=c(165,214,174,149,212,215,181), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # chitinase fig 6
 
 
 #Plot1:
@@ -148,7 +148,7 @@ saveNodes <- plotNode(inputFiles=fileList, node=c(165,174,148,155,181,186,215), 
 #Nodes: 151, 176, 178, 208
 
 pdf('plot_nodes_12june2018.pdf', height=12, width=12, useDingbats = F)
-node <- c(165,174,148,155,181,186,215)
+node <- c(165,214,174,149,212,215,181)
 par(mfrow=c(1,1))
 
 # the following calculates a common bandwidth for the density function
