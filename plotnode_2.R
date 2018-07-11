@@ -7,9 +7,9 @@
   #setwd("/Users/dgruen/Dropbox (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig3/datedist") #for chitinase fig 3
   #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig4/datedist") #for chitinase fig 4
   #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig5/datedist") #for chitinase fig 5
-  # setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/sanitycheck/datedist") #for chitinase sanitycheck
-  setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig6/datedist") #for chitinase fig 6
-  
+  #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/sanitycheck/datedist") #for chitinase sanitycheck
+  #setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig6/datedist") #for chitinase fig 6
+  setwd("/Users/dgruen/Dropbox\ (MIT)/Documents/Academia/MIT/thesis/Ch_4_Chitinase/figures/fig7/datedist") #for chitinase fig 7
   
 # get list of all files in your current directory
 fileList <- list.files()
@@ -17,10 +17,10 @@ fileList <- list.files()
 fileList <- fileList[grep('datedist', fileList)]
 #fileList <- fileList[-grep('.pdf', fileList)]
 
-# saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,155,174,181,186,215), plotLayout=c(5,3), returnData = TRUE, plotTrees = F, plot=TRUE)
+ saveNodes <- plotNode(inputFiles=fileList, node=c(1,3,5,6,70,147,148,165,155,174,181,186,215), plotLayout=c(5,3), returnData = TRUE, plotTrees = F, plot=TRUE)
     # rows, columns
     # for all chitinase nodes
-saveNodes <- plotNode(inputFiles=fileList, node=c(165,214,174,149,212,215,181), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # chitinase fig 6
+# saveNodes <- plotNode(inputFiles=fileList, node=c(165,214,174,149,212,215,181), plotLayout=c(1,1), returnData = TRUE, plotTrees = F) # chitinase fig 6
     # for aquatic and terrestrial date dists only
 
 #' @param inputFiles is character vector of filenames in your working directory.
